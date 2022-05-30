@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux'
-import { counterReducer } from "../reducers/functionReducer";
+import { counterReducer } from "../reducers/counterReducer";
 
 export const allReducers = combineReducers({
-    counterReducer
+    counter: counterReducer
 })
 
 export const store = createStore(

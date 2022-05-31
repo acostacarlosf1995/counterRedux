@@ -1,17 +1,18 @@
 import { types } from "../types";
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+  quote: "",
+  author: "",
+};
 
 export const quotesReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+  switch (action.type) {
+    case types.fetchQuotes:
+      return {
+        ...action.payload,
+      };
 
-        case types.fetchQuotes:
-            return {
-                ...state,
-                payload: action.payload
-            }
-
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };

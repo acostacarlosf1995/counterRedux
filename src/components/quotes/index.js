@@ -1,33 +1,31 @@
-import { useEffect } from 'react'
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchQuotes } from "../../actions/quotes";
 
-import './index.css'
+import "./index.css";
 
 export const Quotes = () => {
+  const state = useSelector((state) => state.quotes);
+  const dispatch = useDispatch();
 
-    const state = useSelector((state) => state.quotes.payload);
-    const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchQuotes());
+    const intervalId = setInterval(() => {
+      dispatch(fetchQuotes());
+    }, 30000);
 
-    useEffect(() => {
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [dispatch]);
 
-        dispatch( fetchQuotes() )
-
-        setInterval(() => {
-            dispatch( fetchQuotes() );
-        }, 30000)
-
-    }, [dispatch]);
-
-    return (
-        <div className="animate__animated animate__backInLeft">
-            <p>
-                “{state?.quote}”
-            </p>
-            <h4>
-                {state?.author}
-            </h4>
-        </div>
-    )
-}
+  return !!state.author && state.quote ? (
+    <div className="animate__animated animate__backInLeft">
+      <p>“{state.quote}”</p>
+      <h5>{state.author}</h5>
+    </div>
+  ) : (
+    <></>
+  );
+};

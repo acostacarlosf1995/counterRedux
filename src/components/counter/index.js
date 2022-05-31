@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { reset, plus, minus, typeCount } from "../../actions/counter";
 
+import { Quotes } from "../quotes";
+
 import "./index.css";
 
 function Counter() {
@@ -27,6 +29,7 @@ function Counter() {
 
   return (
     <div className="container">
+      <Quotes />
       <h1>Counter: {number}</h1>
       <div className="input_container">
         <button className="btn_minus" onClick={handleMinus}>

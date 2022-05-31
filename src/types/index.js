@@ -3,4 +3,6 @@ export const types = {
     counterSubtractOne: '[counter] Subtract One',
     counterAddNumber:'[counter] Add Number',
     counterReset: '[counter] Reset',
+
+    fetchQuotes: '[quotes] New Quote',
 }
